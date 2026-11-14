@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+}
+
+
+/* Header */
+
+header {
+    background: #24292f;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #ddd;
+}
+
+
+/* Main Container */
+
+.container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+
+/* Search Form */
+
+#searchForm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#usernameInput {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+#usernameInput:focus {
+    outline: none;
+    border-color: #24292f;
+}
+
+#searchButton {
+    padding: 13px 20px;
+    background: #24292f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background: #444;
+}
+
+#searchButton:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
+
+/* Status Message */
+
+#statusMessage {
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.loading {
+    color: #1d65a6;
+}
+
+.error {
+    color: #d62828;
+}
+
+.success {
+    color: #16803c;
+}
+
+
+/* Profile Card */
+
+.profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Profile Header */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-header img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-header h2 {
+    margin-bottom: 8px;
+}
+
+#username {
+    color: #666;
+    margin-bottom: 12px;
+}
+
+#profileLink {
+    color: #0969da;
+    text-decoration: none;
+}
+
+#profileLink:hover {
+    text-decoration: underline;
+}
+
+
+/* Bio */
+
+.bio {
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+
+/* User Information */
+
+.user-info {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stats div {
+    background: #f4f6f9;
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: 8px;
+}
+
+.stats h3 {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.stats p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #24292f;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 550px) {
+
+    #searchForm {
+        flex-direction: column;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+}

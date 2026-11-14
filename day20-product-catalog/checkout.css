@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+}
+
+header {
+    background: #1d3557;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 25px;
+}
+
+.form-section,
+.summary-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #1d3557;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #1d3557;
+}
+
+.form-group small {
+    display: block;
+    color: #d62828;
+    margin-top: 5px;
+    font-size: 13px;
+    min-height: 15px;
+}
+
+/* Button */
+
+#placeOrderButton {
+    width: 100%;
+    padding: 14px;
+    background: #1d3557;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#placeOrderButton:hover {
+    background: #315785;
+}
+
+#placeOrderButton:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+/* Order Summary */
+
+.summary-section {
+    height: fit-content;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-item p {
+    color: #666;
+    margin-top: 5px;
+}
+
+.total-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+}
+
+.total-section h3 {
+    display: flex;
+    justify-content: space-between;
+    color: #16803c;
+}
+
+#statusMessage {
+    text-align: center;
+    margin-top: 25px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.success {
+    color: #16803c;
+}
+
+.error-message {
+    color: #d62828;
+}
+
+.empty-message {
+    color: #777;
+    padding: 15px 0;
+}
+
+/* Responsive Design */
+
+@media (max-width: 750px) {
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+}

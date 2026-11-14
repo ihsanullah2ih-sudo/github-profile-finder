@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Application</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+    <STYle>  </STYle>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+
+            <h1>🌤 Weather App</h1>
+
+            <p>Check the weather in any city.</p>
+
+        </header>
+
+
+        <!-- Search Form -->
+
+        <form id="searchForm" class="search-form">
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name..."
+                value="Kabul"
+                required
+            >
+
+            <button type="submit" id="searchButton">
+
+                Search
+
+            </button>
+
+        </form>
+
+
+        <!-- Status Message -->
+
+        <p
+            id="statusMessage"
+            class="status"
+            role="status"
+            aria-live="polite"
+        ></p>
+
+
+        <!-- Weather Result -->
+
+        <section id="weatherResult" hidden>
+
+            <div class="current-weather">
+
+                <h2 id="cityName"></h2>
+
+                <p id="updatedAt"></p>
+
+
+                <div class="weather-icon" id="weatherIcon">
+                    ☀️
+                </div>
+
+
+                <h1 id="temperature">
+                    0°C
+                </h1>
+
+
+                <h3 id="weatherDescription">
+                    Clear Sky
+                </h3>
+
+
+                <div class="details">
+
+                    <div class="detail-box">
+
+                        <span>Feels Like</span>
+
+                        <strong id="feelsLike">0°C</strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>Humidity</span>
+
+                        <strong id="humidity">0%</strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>Wind Speed</span>
+
+                        <strong id="windSpeed">0 km/h</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Three Day Forecast -->
+
+            <div class="forecast-section">
+
+                <h2>3-Day Forecast</h2>
+
+                <div
+                    class="forecast-container"
+                    id="forecastContainer"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            Weather data provided by
+
+            <a
+                href="https://open-meteo.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open-Meteo
+            </a>
+
+        </footer>
+
+    </main>
+    
+
+</body>
+
+</html>

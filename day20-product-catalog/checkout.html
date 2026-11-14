@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout System</title>
+
+    <link rel="stylesheet" href="checkout.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Complete Your Order</h1>
+
+        <p>Enter your information to place your order</p>
+
+    </header>
+
+
+    <main class="container">
+
+        <div class="checkout-layout">
+
+
+            <!-- Customer Information Form -->
+
+            <section class="form-section">
+
+                <h2>Customer Information</h2>
+
+                <form id="checkoutForm" novalidate>
+
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                        >
+
+                        <small id="fullNameError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@gmail.com"
+                        >
+
+                        <small id="emailError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+93700000000"
+                        >
+
+                        <small id="phoneError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="Enter your address"
+                        ></textarea>
+
+                        <small id="addressError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter your city"
+                        >
+
+                        <small id="cityError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="delivery">
+                            Delivery Method
+                        </label>
+
+                        <select id="delivery">
+
+                            <option value="">
+                                Select delivery method
+                            </option>
+
+                            <option value="standard">
+                                Standard Delivery
+                            </option>
+
+                            <option value="express">
+                                Express Delivery
+                            </option>
+
+                        </select>
+
+                        <small id="deliveryError"></small>
+
+                    </div>
+
+
+                    <button type="submit" id="placeOrderButton">
+
+                        Place Order
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- Order Summary -->
+
+            <section class="summary-section">
+
+                <h2>Order Summary</h2>
+
+                <div id="cartMessage"></div>
+
+                <div id="orderItems"></div>
+
+                <div class="total-section">
+
+                    <h3>
+                        Total:
+                        <span id="orderTotal">$0.00</span>
+                    </h3>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- Status Message -->
+
+        <p id="statusMessage"></p>
+
+
+    </main>
+
+
+    <script src="checkout.js"></script>
+
+</body>
+
+</html>

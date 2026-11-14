@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="header-content">
+
+            <div>
+                <h1>Online Store</h1>
+                <p>Find your favorite products</p>
+            </div>
+
+            <div class="cart-indicator">
+                Cart: <span id="cartCount">0</span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- Search and Filters -->
+
+        <section class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+            >
+
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+            </select>
+
+            <select id="sortFilter">
+                <option value="default">Default Order</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+
+        </section>
+
+
+        <!-- Status Message -->
+
+        <p id="statusMessage">Loading products...</p>
+
+        <p id="resultsCount"></p>
+
+
+        <!-- Products -->
+
+        <section id="productGrid" class="product-grid"></section>
+
+
+        <!-- Shopping Cart -->
+
+        <section class="cart-section">
+
+            <h2>My Shopping Cart</h2>
+
+            <div id="cartItems"></div>
+
+            <div class="cart-summary">
+
+                <h3>
+                    Total:
+                    <span id="cartTotal">$0.00</span>
+                </h3>
+
+                <button id="clearCartButton">
+                    Clear Cart
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

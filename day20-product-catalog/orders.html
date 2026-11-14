@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order History Dashboard</title>
+
+    <link rel="stylesheet" href="orders.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Order History Dashboard</h1>
+
+        <p>Manage and view your previous orders</p>
+
+        <a href="index.html">Back to Store</a>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- Dashboard Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h3>Total Orders</h3>
+
+                <p id="totalOrders">0</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Total Sales</h3>
+
+                <p id="totalSales">$0.00</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Search and Filters -->
+
+        <section class="toolbar">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by Order ID or product..."
+            >
+
+
+            <select id="deliveryFilter">
+
+                <option value="all">All Delivery Methods</option>
+
+                <option value="standard">Standard Delivery</option>
+
+                <option value="express">Express Delivery</option>
+
+            </select>
+
+
+            <select id="sortFilter">
+
+                <option value="newest">Newest First</option>
+
+                <option value="oldest">Oldest First</option>
+
+                <option value="high">Highest Price</option>
+
+                <option value="low">Lowest Price</option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Status Message -->
+
+        <p id="statusMessage"></p>
+
+
+        <!-- Search Results Count -->
+
+        <p id="resultsCount"></p>
+
+
+        <!-- Orders List -->
+
+        <section id="ordersList" class="orders-list"></section>
+
+
+    </main>
+
+
+    <script src="orders.js"></script>
+
+</body>
+
+</html>

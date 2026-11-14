@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Quiz Application</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 15px;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+
+            border-radius: 14px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 9px;
+
+            background: #e2e8f0;
+
+            border-radius: 20px;
+            overflow: hidden;
+
+            margin-bottom: 25px;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+
+            background: #2563eb;
+
+            transition: width 0.3s ease;
+        }
+
+        .question {
+            font-size: 21px;
+            line-height: 1.5;
+
+            margin-bottom: 22px;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option-button {
+            width: 100%;
+            padding: 14px;
+
+            border: 2px solid #e2e8f0;
+            border-radius: 9px;
+
+            background: white;
+
+            color: #1e293b;
+            font-size: 16px;
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .option-button:hover:not(:disabled) {
+            background: #eff6ff;
+            border-color: #93c5fd;
+        }
+
+        .option-button:focus-visible,
+        .primary-button:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 3px;
+        }
+
+        .option-button:disabled {
+            cursor: default;
+        }
+
+        .option-button.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #166534;
+        }
+
+        .option-button.incorrect {
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #991b1b;
+        }
+
+        .feedback {
+            min-height: 28px;
+
+            margin-top: 18px;
+
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: flex-end;
+
+            margin-top: 20px;
+        }
+
+        .primary-button {
+            padding: 13px 20px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .primary-button:hover:not(:disabled) {
+            background: #1d4ed8;
+        }
+
+        .primary-button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .result-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .result-score {
+            font-size: 35px;
+            color: #2563eb;
+            margin: 20px 0;
+        }
+
+        .result-message {
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 18px;
+            }
+
+            .question {
+                font-size: 19px;
+            }
+
+            .quiz-info {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+
+            <h1>🧠 JavaScript Quiz</h1>
+
+            <p>
+                Test your JavaScript knowledge!
+            </p>
+
+        </header>
+
+
+        <!-- Quiz Screen -->
+
+        <section class="card" id="quizScreen">
+
+            <div class="quiz-info">
+
+                <span id="questionCounter">
+                    Question 1 of 5
+                </span>
+
+                <span id="scoreDisplay">
+                    Score: 0
+                </span>
+
+            </div>
+
+
+            <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Quiz progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                id="progressTrack"
+            >
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+
+            <h2
+                class="question"
+                id="questionText"
+            ></h2>
+
+
+            <div
+                class="options"
+                id="optionsContainer"
+            ></div>
+
+
+            <p
+                class="feedback"
+                id="feedback"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+
+            <div class="navigation">
+
+                <button
+                    class="primary-button"
+                    id="nextButton"
+                    type="button"
+                    disabled
+                >
+                    Next Question
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Result Screen -->
+
+        <section
+            class="card result-screen"
+            id="resultScreen"
+            aria-labelledby="resultTitle"
+            aria-live="polite"
+        >
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2 id="resultTitle">
+                Quiz Completed!
+            </h2>
+
+            <p>Your Final Score</p>
+
+            <h3
+                class="result-score"
+                id="finalScore"
+            >
+                0 / 5
+            </h3>
+
+            <p
+                class="result-message"
+                id="resultMessage"
+            ></p>
+
+            <button
+                class="primary-button"
+                id="restartButton"
+                type="button"
+            >
+                Restart Quiz
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // 1. Quiz questions.
+
+        const questions = [
+
+            {
+                question: "Which keyword declares a variable that can be reassigned?",
+
+                options: [
+                    "const",
+                    "let",
+                    "return",
+                    "break"
+                ],
+
+                answer: 1
+            },
+
+            {
+                question: "Which method adds an item to the end of an array?",
+
+                options: [
+                    "filter()",
+                    "reduce()",
+                    "push()",
+                    "find()"
+                ],
+
+                answer: 2
+            },
+
+            {
+                question: "Which method selects an HTML element by its ID?",
+
+                options: [
+                    "document.getElementById()",
+                    "console.log()",
+                    "JSON.stringify()",
+                    "Array.isArray()"
+                ],
+
+                answer: 0
+            },
+
+            {
+                question: "Which event usually happens when a button is clicked?",
+
+                options: [
+                    "change",
+                    "submit",
+                    "input",
+                    "click"
+                ],
+
+                answer: 3
+            },
+
+            {
+                question: "Which method converts a JavaScript object into JSON text?",
+
+                options: [
+                    "JSON.parse()",
+                    "JSON.stringify()",
+                    "Math.random()",
+                    "Number.isFinite()"
+                ],
+
+                answer: 1
+            }
+
+        ];
+
+
+        // 2. Select HTML elements.
+
+        const quizScreen =
+            document.getElementById("quizScreen");
+
+        const resultScreen =
+            document.getElementById("resultScreen");
+
+        const questionCounter =
+            document.getElementById("questionCounter");
+
+        const scoreDisplay =
+            document.getElementById("scoreDisplay");
+
+        const progressBar =
+            document.getElementById("progressBar");
+
+        const progressTrack =
+            document.getElementById("progressTrack");
+
+        const questionText =
+            document.getElementById("questionText");
+
+        const optionsContainer =
+            document.getElementById("optionsContainer");
+
+        const feedback =
+            document.getElementById("feedback");
+
+        const nextButton =
+            document.getElementById("nextButton");
+
+        const finalScore =
+            document.getElementById("finalScore");
+
+        const resultMessage =
+            document.getElementById("resultMessage");
+
+        const restartButton =
+            document.getElementById("restartButton");
+
+
+        // 3. Quiz state.
+
+        let currentQuestionIndex = 0;
+
+        let score = 0;
+
+        let answered = false;
+
+
+        // 4. Display the current question.
+
+        function showQuestion() {
+
+            answered = false;
+
+            nextButton.disabled = true;
+
+            feedback.textContent = "";
+
+            optionsContainer.replaceChildren();
+
+
+            const currentQuestion =
+                questions[currentQuestionIndex];
+
+
+            questionCounter.textContent =
+                `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+
+
+            scoreDisplay.textContent =
+                `Score: ${score}`;
+
+
+            questionText.textContent =
+                currentQuestion.question;
+
+
+            const progress =
+                (currentQuestionIndex / questions.length) * 100;
+
+
+            progressBar.style.width =
+                `${progress}%`;
+
+
+            progressTrack.setAttribute(
+                "aria-valuenow",
+                progress
+            );
+
+
+            currentQuestion.options.forEach(
+                function (option, index) {
+
+                    const button =
+                        document.createElement("button");
+
+
+                    button.type = "button";
+
+                    button.className = "option-button";
+
+                    button.textContent = option;
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            selectAnswer(index);
+
+                        }
+                    );
+
+
+                    optionsContainer.appendChild(button);
+
+                }
+            );
+
+
+            nextButton.textContent =
+                currentQuestionIndex === questions.length - 1
+                    ? "See Results"
+                    : "Next Question";
+
+        }
+
+
+        // 5. Check the selected answer.
+
+        function selectAnswer(selectedIndex) {
+
+            if (answered) {
+
+                return;
+
+            }
+
+
+            answered = true;
+
+
+            const currentQuestion =
+                questions[currentQuestionIndex];
+
+
+            const optionButtons =
+                optionsContainer.querySelectorAll("button");
+
+
+            const correctIndex =
+                currentQuestion.answer;
+
+
+            if (selectedIndex === correctIndex) {
+
+                score++;
+
+                feedback.textContent =
+                    "Correct answer! Well done.";
+
+            } else {
+
+                feedback.textContent =
+                    "Incorrect answer. The correct answer is highlighted.";
+
+            }
+
+
+            optionButtons.forEach(
+                function (button, index) {
+
+                    button.disabled = true;
+
+
+                    if (index === correctIndex) {
+
+                        button.classList.add("correct");
+
+                    }
+
+
+                    if (index === selectedIndex &&
+                        selectedIndex !== correctIndex) {
+
+                        button.classList.add("incorrect");
+
+                    }
+
+                }
+            );
+
+
+            scoreDisplay.textContent =
+                `Score: ${score}`;
+
+
+            nextButton.disabled = false;
+
+        }
+
+
+        // 6. Move to the next question.
+
+        function nextQuestion() {
+
+            if (!answered) {
+
+                return;
+
+            }
+
+
+            if (currentQuestionIndex < questions.length - 1) {
+
+                currentQuestionIndex++;
+
+                showQuestion();
+
+            } else {
+
+                showResults();
+
+            }
+
+        }
+
+
+        // 7. Display the final results.
+
+        function showResults() {
+
+            quizScreen.classList.add("hidden");
+
+            resultScreen.style.display = "block";
+
+
+            const percentage =
+                Math.round((score / questions.length) * 100);
+
+
+            finalScore.textContent =
+                `${score} / ${questions.length}`;
+
+
+            if (percentage === 100) {
+
+                resultMessage.textContent =
+                    `Perfect score! You achieved ${percentage}%. Excellent work!`;
+
+            } else if (percentage >= 60) {
+
+                resultMessage.textContent =
+                    `Good job! You achieved ${percentage}%. Keep practising!`;
+
+            } else {
+
+                resultMessage.textContent =
+                    `You achieved ${percentage}%. Review the lessons and try again!`;
+
+            }
+
+
+            progressBar.style.width = "100%";
+
+            progressTrack.setAttribute(
+                "aria-valuenow",
+                100
+            );
+
+        }
+
+
+        // 8. Restart the quiz.
+
+        function restartQuiz() {
+
+            currentQuestionIndex = 0;
+
+            score = 0;
+
+            answered = false;
+
+
+            resultScreen.style.display = "none";
+
+            quizScreen.classList.remove("hidden");
+
+
+            showQuestion();
+
+        }
+
+
+        // 9. Attach button events.
+
+        nextButton.addEventListener(
+            "click",
+            nextQuestion
+        );
+
+
+        restartButton.addEventListener(
+            "click",
+            restartQuiz
+        );
+
+
+        // 10. Start the quiz.
+
+        showQuestion();
+
+    </script>
+
+</body>
+
+</html>

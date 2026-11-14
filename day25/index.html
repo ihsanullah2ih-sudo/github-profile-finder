@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitHub Profile Finder</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>GitHub Profile Finder</h1>
+
+        <p>Search and explore GitHub users</p>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- Search Form -->
+
+        <form id="searchForm">
+
+            <input
+                type="text"
+                id="usernameInput"
+                placeholder="Enter GitHub username..."
+                autocomplete="off"
+            >
+
+            <button type="submit" id="searchButton">
+
+                Search
+
+            </button>
+
+        </form>
+
+
+        <!-- Status Message -->
+
+        <p id="statusMessage"></p>
+
+
+        <!-- Profile Card -->
+
+        <section id="profileCard" class="profile-card" hidden>
+
+
+            <!-- User Information -->
+
+            <div class="profile-header">
+
+                <img
+                    id="avatar"
+                    src=""
+                    alt="GitHub user avatar"
+                >
+
+                <div>
+
+                    <h2 id="name"></h2>
+
+                    <p id="username"></p>
+
+                    <a
+                        id="profileLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View GitHub Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bio -->
+
+            <p id="bio" class="bio"></p>
+
+
+            <!-- Location and Date -->
+
+            <div class="user-info">
+
+                <p>
+
+                    <strong>Location:</strong>
+
+                    <span id="location"></span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>Joined:</strong>
+
+                    <span id="joined"></span>
+
+                </p>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="stats">
+
+                <div>
+
+                    <h3>Repositories</h3>
+
+                    <p id="repositories">0</p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>Followers</h3>
+
+                    <p id="followers">0</p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>Following</h3>
+
+                    <p id="following">0</p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
